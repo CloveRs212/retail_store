@@ -1,7 +1,8 @@
 import { useState } from "react";
 import FormInput from "../../components/form-input/form-input.components";
-
+import Button from "../button/button.component";
 import { CreateAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase.utils";
+import './sign-up-form.stlyes.scss';
 
 const defaultFormFields = {
   displayName: "",
@@ -19,7 +20,7 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(password != confirmPassword) {
+    if(password !== confirmPassword) {
       Alert('passwords do not match');
       return;
     }
@@ -46,8 +47,9 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <h1>Sign Up With Your Email</h1>
+    <div className="sign-up-container">
+      <h2>Do not Have An Account?!</h2>
+      <span>Sign Up With Your Email</span>
       <form onSubmit={handleSubmit}>
           <FormInput
             label='Display Name'
@@ -58,7 +60,7 @@ const SignUpForm = () => {
             value={displayName}
           />
           <FormInput
-            label='email'
+            label='Email'
             type="email"
             required
             onChange={handleChange}
@@ -66,14 +68,14 @@ const SignUpForm = () => {
             value={email}
           />
           <FormInput
-            label='password'
+            label='Password'
             type="password"
             required
             onChange={handleChange}
             name="password"
             value={password}
           />
-          <input
+          <FormInput
             label='Confirm Password'
             type="password"
             required
@@ -81,7 +83,7 @@ const SignUpForm = () => {
             name="confirmPassword"
             value={confirmPassword}
           />
-        <button type="submit">Sign Up</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
